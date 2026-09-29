@@ -34,7 +34,10 @@ jobs:
     - name: Executa testes unitarios
       run: mvn -B verify
 
+    - name: Gera relatorio Jacoco
+      run: mvn jacoco:prepara-agent verify
+
     - name: Analise estatica
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=G-PRADO_projeto_inicial
+      run: mvn sonar:sonar -Dsonar.projectKey=G-PRADO_projeto_inicial
