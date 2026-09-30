@@ -28,6 +28,9 @@ jobs:
     - name: Roda Docker Compose
       run: docker compose up -d
 
+    - name: Build image
+      run: docker build -t projeto-inicial-api_api .
+      
     - name: Deploy para EC2
       env:
         PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
@@ -36,9 +39,6 @@ jobs:
       run: |
         echo "$PRIVATE_KEY" > deploy_key.pem
         chmod 600 deploy_key.pem
-
-    - name: Build image
-      run: docker build -t projeto-inicial-api_api .
 
         docker save -o projeto-inicial-api.tar projeto-inicial-api_api
 
