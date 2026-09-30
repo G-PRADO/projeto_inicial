@@ -37,6 +37,9 @@ jobs:
         echo "$PRIVATE_KEY" > deploy_key.pem
         chmod 600 deploy_key.pem
 
+    - name: Build image
+      run: docker build -t projeto-inicial-api_api .
+
         docker save -o projeto-inicial-api.tar projeto-inicial-api_api
 
         scp -o StrictHostKeyChecking=no -i deploy_key.pem projeto-inicial-api.tar $USER@$HOST:/home/ubuntu/
