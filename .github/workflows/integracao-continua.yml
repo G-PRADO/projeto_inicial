@@ -35,7 +35,7 @@ jobs:
       run: mvn -B verify
 
     - name: Gera relatorio Jacoco
-      run: mvn jacoco:prepara-agent verify
+      run: mvn jacoco:prepare-agent verify
 
     - name: Analise estatica
       env:
